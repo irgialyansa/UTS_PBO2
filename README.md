@@ -41,3 +41,66 @@ class Apoteker extends TenagaMedis {
     return "Apoteker profesional";
   }
 }
+
+
+🔀 Polymorphism
+php
+interface MetodeResep {
+  public function verifikasi();
+}
+
+class ResepDokter implements MetodeResep {
+  public function verifikasi() {
+    return "Resep divalidasi oleh dokter";
+  }
+}
+
+class ResepOTC implements MetodeResep {
+  public function verifikasi() {
+    return "Obat bebas terverifikasi";
+  }
+}
+🔒 Encapsulation
+php
+class Transaksi {
+  private $total;
+  
+  public function setTotal($jumlah) {
+    $this->total = $jumlah * 1.1; // Tambah PPN 10%
+  }
+  
+  public function getTotal() {
+    return $this->total;
+  }
+}
+Instalasi
+Clone repositori
+
+bash
+git clone https://github.com/username/apotek-cashier.git
+cd apotek-cashier
+Setup database (MySQL)
+
+sql
+CREATE DATABASE apotek_db;
+-- Import skema dari file database/schema.sql
+Install dependencies
+
+bash
+composer install
+Konfigurasi environment
+
+bash
+cp .env.example .env
+Penggunaan
+Contoh membuat transaksi baru:
+
+php
+$pasien = new Pasien("Budi", 25);
+$obat = new Obat("Paracetamol", 5000, 100);
+$resep = new ResepDokter($pasien, $dokter);
+$resep->tambahObat($obat, 2);
+
+$transaksi = new Transaksi();
+$transaksi->prosesPembelian($resep);
+echo $transaksi->total(); // Output: 11000 (termasuk PPN)
