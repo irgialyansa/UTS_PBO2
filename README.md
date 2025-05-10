@@ -1,106 +1,198 @@
 # UTS_PBO2
- # Sistem Kasir Apotek - Tugas OOP
 
-[![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-blue.svg)](https://php.net/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-Sistem manajemen transaksi pembelian obat untuk apotek dengan fitur resep dokter dan pembelian langsung.
+```java
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-## Fitur Utama
-- 📝 Manajemen data pasien dan obat
-- 💊 Pembuatan dan verifikasi resep dokter
-- 💰 Transaksi dengan resep maupun langsung
-- 📊 Laporan transaksi harian
-- 🔒 Enkapsulasi data sensitif pasien
-
-## Struktur Database
-### Tabel Utama
-| Tabel          | Kolom                          |
-|----------------|--------------------------------|
-| `pasien`       | id, nama, umur                |
-| `obat`         | id, nama, harga, stok         |
-| `resep`        | id, pasien_id, dokter_id, tanggal |
-| `detail_resep` | resep_id, obat_id, jumlah     |
-| `transaksi`    | id, pasien_id, total, tanggal |
-
-## Konsep OOP yang Diimplementasikan
-### 👨⚕ Inheritance
-```php
+// Abstract Class TenagaMedis
 abstract class TenagaMedis {
-  abstract public function identifikasi();
+    protected String nama;
+    protected String id;
+
+    public TenagaMedis(String nama, String id) {
+        this.nama = nama;
+        this.id = id;
+    }
+    
+    public abstract String identifikasi();
 }
 
+// Inheritance
 class Dokter extends TenagaMedis {
-  public function identifikasi() {
-    return "Dokter bersertifikasi";
-  }
+    public Dokter(String nama, String id) {
+        super(nama, id);
+    }
+
+    @Override
+    public String identifikasi() {
+        return "Dokter " + nama + " (ID: " + id + ")";
+    }
 }
 
 class Apoteker extends TenagaMedis {
-  public function identifikasi() {
-    return "Apoteker profesional";
-  }
+    public Apoteker(String nama, String id) {
+        super(nama, id);
+    }
+
+    @Override
+    public String identifikasi() {
+        return "Apoteker " + nama + " (ID: " + id + ")";
+    }
 }
 
-
-🔀 Polymorphism
-php
+// Polymorphism Interface
 interface MetodeResep {
-  public function verifikasi();
+    String verifikasi();
 }
 
+// Encapsulation Class
+class Pasien {
+    private String id;
+    private String nama;
+    private int umur;
+
+    public Pasien(String id, String nama, int umur) {
+        this.id = id;
+        this.nama = nama;
+        this.umur = umur;
+    }
+
+    // Getter methods
+    public String getId() { return id; }
+    public String getNama() { return nama; }
+    public int getUmur() { return umur; }
+}
+
+class Obat {
+    private String id;
+    private String nama;
+    private double harga;
+    private int stok;
+
+    public Obat(String id, String nama, double harga, int stok) {
+        this.id = id;
+        this.nama = nama;
+        this.harga = harga;
+        this.stok = stok;
+    }
+
+    // Getter methods
+    public String getId() { return id; }
+    public String getNama() { return nama; }
+    public double getHarga() { return harga; }
+    public int getStok() { return stok; }
+    
+    public void kurangiStok(int jumlah) {
+        this.stok -= jumlah;
+    }
+}
+
+class Resep {
+    private String id;
+    private Pasien pasien;
+    private TenagaMedis dokter;
+    private Date tanggal;
+    private List<DetailResep> detailResep = new ArrayList<>();
+
+    public Resep(String id, Pasien pasien, TenagaMedis dokter, Date tanggal) {
+        this.id = id;
+        this.pasien = pasien;
+        this.dokter = dokter;
+        this.tanggal = tanggal;
+    }
+
+    public void tambahObat(Obat obat, int jumlah) {
+        detailResep.add(new DetailResep(obat, jumlah));
+    }
+}
+
+class DetailResep {
+    private Obat obat;
+    private int jumlah;
+
+    public DetailResep(Obat obat, int jumlah) {
+        this.obat = obat;
+        this.jumlah = jumlah;
+    }
+}
+
+class Transaksi {
+    private String id;
+    private Pasien pasien;
+    private double total;
+    private Date tanggal;
+
+    public Transaksi(String id, Pasien pasien, Date tanggal) {
+        this.id = id;
+        this.pasien = pasien;
+        this.tanggal = tanggal;
+    }
+
+    // Encapsulation method
+    public void hitungTotal(List<DetailResep> items) {
+        this.total = items.stream()
+            .mapToDouble(d -> d.getObat().getHarga() * d.getJumlah())
+            .sum() * 1.1; // Tambah PPN 10%
+    }
+}
+
+// Implementasi Polymorphism
 class ResepDokter implements MetodeResep {
-  public function verifikasi() {
-    return "Resep divalidasi oleh dokter";
-  }
+    @Override
+    public String verifikasi() {
+        return "Resep dokter telah divalidasi";
+    }
 }
 
 class ResepOTC implements MetodeResep {
-  public function verifikasi() {
-    return "Obat bebas terverifikasi";
-  }
+    @Override
+    public String verifikasi() {
+        return "Obat bebas terverifikasi";
+    }
 }
-🔒 Encapsulation
-php
-class Transaksi {
-  private $total;
-  
-  public function setTotal($jumlah) {
-    $this->total = $jumlah * 1.1; // Tambah PPN 10%
-  }
-  
-  public function getTotal() {
-    return $this->total;
-  }
+
+public class SistemApotek {
+    public static void main(String[] args) {
+        // Contoh penggunaan
+        Dokter dokter = new Dokter("Dr. Andi", "D001");
+        Apoteker apoteker = new Apoteker("Budi", "A001");
+        Pasien pasien = new Pasien("P001", "John Doe", 30);
+        
+        Obat obat1 = new Obat("O001", "Paracetamol", 5000, 100);
+        Obat obat2 = new Obat("O002", "Vitamin C", 15000, 50);
+        
+        Resep resep = new Resep("R001", pasien, dokter, new Date());
+        resep.tambahObat(obat1, 2);
+        resep.tambahObat(obat2, 1);
+        
+        Transaksi transaksi = new Transaksi("T001", pasien, new Date());
+        transaksi.hitungTotal(resep.getDetailResep());
+        
+        // Verifikasi resep
+        MetodeResep verifikasiResep = new ResepDokter();
+        System.out.println(verifikasiResep.verifikasi());
+        
+        System.out.println("Total transaksi: Rp" + transaksi.getTotal());
+    }
 }
-Instalasi
-Clone repositori
+```
 
-bash
-git clone https://github.com/username/apotek-cashier.git
-cd apotek-cashier
-Setup database (MySQL)
+Program ini mengimplementasikan:
+1. **Inheritance**: Kelas `Dokter` dan `Apoteker` mewarisi dari abstract class `TenagaMedis`
+2. **Polymorphism**: Interface `MetodeResep` dengan implementasi berbeda di `ResepDokter` dan `ResepOTC`
+3. **Encapsulation**: Data pasien dan obat dienkapsulasi dengan access modifier private
+4. **Abstract Class**: `TenagaMedis` sebagai abstract class dengan method abstrak `identifikasi()`
 
-sql
-CREATE DATABASE apotek_db;
--- Import skema dari file database/schema.sql
-Install dependencies
+Untuk integrasi dengan database, Anda perlu:
+1. Menambahkan JDBC driver
+2. Membuat DAO (Data Access Object) untuk setiap entitas
+3. Mengimplementasikan CRUD operations
+4. Menggunakan prepared statement untuk keamanan
 
-bash
-composer install
-Konfigurasi environment
-
-bash
-cp .env.example .env
-Penggunaan
-Contoh membuat transaksi baru:
-
-php
-$pasien = new Pasien("Budi", 25);
-$obat = new Obat("Paracetamol", 5000, 100);
-$resep = new ResepDokter($pasien, $dokter);
-$resep->tambahObat($obat, 2);
-
-$transaksi = new Transaksi();
-$transaksi->prosesPembelian($resep);
-echo $transaksi->total(); // Output: 11000 (termasuk PPN)
+Anda bisa menambahkan fitur berikut:
+- Validasi stok obat
+- Pencatatan riwayat transaksi
+- Notifikasi obat hampir kadaluarsa
+- Sistem autentikasi user
