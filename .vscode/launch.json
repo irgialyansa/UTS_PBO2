@@ -1,0 +1,196 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "demi",
+            "request": "launch",
+            "mainClass": "demi",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "he",
+            "request": "launch",
+            "mainClass": "he",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "KasirApotekFinish",
+            "request": "launch",
+            "mainClass": "KasirApotekFinish",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "KASIRFIX",
+            "request": "launch",
+            "mainClass": "KASIRFIX",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "coba",
+            "request": "launch",
+            "mainClass": "coba",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Apa2",
+            "request": "launch",
+            "mainClass": "Apa2",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "ContohSoal",
+            "request": "launch",
+            "mainClass": "ContohSoal",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "DataObat",
+            "request": "launch",
+            "mainClass": "DataObat",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "FiturAdminIdentifikasiStok",
+            "request": "launch",
+            "mainClass": "FiturAdminIdentifikasiStok",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "FiturPengelolaIdentifikasiKadaluwarsa",
+            "request": "launch",
+            "mainClass": "FiturPengelolaIdentifikasiKadaluwarsa",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "KartuMember",
+            "request": "launch",
+            "mainClass": "KartuMember",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "Kasir90",
+            "request": "launch",
+            "mainClass": "Kasir90",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "KasirApotekFinal",
+            "request": "launch",
+            "mainClass": "KasirApotekFinal",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "FiturAdminIdentifikasiStok(1)",
+            "request": "launch",
+            "mainClass": "PENGELOLA.FiturAdminIdentifikasiStok",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "FiturPengelolaIdentifikasiKadaluwarsa(1)",
+            "request": "launch",
+            "mainClass": "PENGELOLA.FiturPengelolaIdentifikasiKadaluwarsa",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "FiturStokObat",
+            "request": "launch",
+            "mainClass": "PENGELOLA.FiturStokObat",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "medicineStock",
+            "request": "launch",
+            "mainClass": "PENGELOLA.medicineStock",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "TransaksiPelanggan",
+            "request": "launch",
+            "mainClass": "TransaksiPelanggan",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "TugasKelompok",
+            "request": "launch",
+            "mainClass": "TugasKelompok",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "TugasKelompokArray",
+            "request": "launch",
+            "mainClass": "TugasKelompokArray",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "DataObat(1)",
+            "request": "launch",
+            "mainClass": "USER.DataObat",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "KartuMember(1)",
+            "request": "launch",
+            "mainClass": "USER.KartuMember",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "apa",
+            "request": "launch",
+            "mainClass": "apa",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "cek",
+            "request": "launch",
+            "mainClass": "cek",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "medicineStock(1)",
+            "request": "launch",
+            "mainClass": "medicineStock",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        },
+        {
+            "type": "java",
+            "name": "struk",
+            "request": "launch",
+            "mainClass": "struk",
+            "projectName": "Kelompok9_KasirApotek_49d0da25"
+        }
+    ]
+}
